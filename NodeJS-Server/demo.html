@@ -1,0 +1,59 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script>
+		$(() => {
+			function handleData(data) {
+				$('#response').append(data).append('\n');
+			}
+
+			function poll() {
+				$.ajax({
+					url: '/poll',
+					method: 'post'
+				}).done((data) => {
+					setTimeout(() => {
+						poll();
+					}, 0)
+					handleData(data);
+				});
+			}
+			setTimeout(() => {
+				poll();
+			}, 0)
+			$('#send').click(() => {
+				$.ajax({
+					url: '/send',
+					method: 'post',
+					data: {
+						computerName: $('#computerName').val(),
+						message: $('#message').val()
+					}
+				});
+			});
+		});
+	</script>
+	<style>
+		#response {
+			width: 50%;
+			height: 50%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Demo</h1>
+	<button id="send">Click to send event</button>
+	<br><br>
+	<div id="eventData">
+		<label>Send to computer: </label>
+		<input type="text" id="computerName">
+		<br />
+		<label>Message: </label>
+		<input type="text" id="message">
+		<br />
+	</div>
+	<p>Long Polling Responses: </p>
+	<br>
+	<textarea id="response"></textarea>
+</body>
+</html>

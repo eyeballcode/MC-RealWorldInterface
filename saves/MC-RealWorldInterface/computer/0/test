@@ -1,0 +1,13 @@
+function rawread()
+while true do
+local sEvent, param = os.pullEvent("key")
+
+if sEvent == "key" then
+if param == 1 then
+print ("esc")
+break
+end
+end
+end
+end
+rawread()

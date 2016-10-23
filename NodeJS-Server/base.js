@@ -19,9 +19,15 @@ function waitForEvent(callback) {
 	emitter.on('event', handle);
 }
 
+app.use(function (req, res, next) {
+  delete req.headers['content-encoding']
+  next()
+})
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
@@ -36,12 +42,17 @@ app.post('/send', (req, res) => {
 	var computerName = req.body.computerName;
 	var message = req.body.message;
 	pushEvent(computerName, message);
-	res.end('Sup');
+	res.end();
 });
 
 app.post('/poll', (req, res) => {
+	req.closed = false;
+	req.on('close', () => {
+		req.closed = true;
+	}); 
 	waitForEvent((event) => {
-		res.end(JSON.stringify(event));
+		if (!req.closed)
+			res.end(JSON.stringify(event));
 	});
 });
 
@@ -49,6 +60,6 @@ app.get('/test', (req, res) => {
 	res.sendFile(__dirname + '/demo.html');
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
 	console.log('MC-Robots started on port ' + PORT);
 })

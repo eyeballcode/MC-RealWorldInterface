@@ -41,6 +41,7 @@ app.get('/', (req, res) => {
 app.post('/send', (req, res) => {
 	var computerName = req.body.computerName;
 	var message = req.body.message;
+	console.log("To: " + computerName + "; Message: " + message);
 	pushEvent(computerName, message);
 	res.end();
 });

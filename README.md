@@ -8,6 +8,8 @@ Working on:
  - [x] World -> Minecraft communication
  - [ ] Minecraft -> World communication
  - [ ] Websockets maybe?
+ - [ ] MakeBlock Controller
+ - [ ] Java Client for Makeblock
  
  To setup:
  

@@ -3,15 +3,15 @@ Control Minecraft with real life
 
 Using this, you can hook up any device to control Minecraft. (Even a toaster if you want)
 
-Working on:
+#Working on:
 
  - [x] World -> Minecraft communication
  - [ ] Minecraft -> World communication
  - [ ] Websockets maybe?
- - [ ] MakeBlock Controller
+ - [x] MakeBlock Controller
  - [ ] Java Client for Makeblock
  
- To setup:
+ #To setup bare minimum:
  
  1. Run `git clone https://github.com/eyeballcode/MC-RealWorldInterface.git; cd MC-RealWorldInterface/`
  2. Run `pwd` and copy the output to the clipboard.
@@ -24,3 +24,22 @@ Working on:
  8. Open up `http://localhost:8080/demo` in your preferred web browser.
  9. Under `Send to computer`, enter `ServerRoomLock`.
  10. Under `Message`, enter `open`.
+
+#To setup java client:
+1. Download the Arduino IDE from https://www.arduino.cc/en/Main/Software.
+2. Open up the .ino file provided. Under Tools -> Port, ensure the something like COM3 or /dev/ttyBlah is selected.
+3. Hit <kbd>Ctrl</kbd> + <kbd>U</kbd> to upload the file to the MakeBlock
+4. If all is well, it should start compiling and uploading. When it is done, it should say "avrdude done."
+5. Open up IntelliJ (Sorry eclipse people you're on your own) and load the project.
+6. Check that your OS is supported:
+   - Windows 32 and 64 Bit
+   - Linux 32 and 64 Bit
+   - Mac
+7. Compile and run the program. When prompted for a serial port, choose the same one as the one used in the Arduino IDE.
+(As of now)
+8. Move the Joystick up and see if it shows the potentiomenter readings.
+
+
+#Makeblock setup
+Connect the Potentiometer to Port 8
+Connect the Joystick to Port 6

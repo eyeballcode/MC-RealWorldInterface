@@ -41,5 +41,5 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 
 
 #Makeblock setup
-Connect the Potentiometer to Port 8
-Connect the Joystick to Port 6
+- Connect the Potentiometer to Port 8
+- Connect the Joystick to Port 6

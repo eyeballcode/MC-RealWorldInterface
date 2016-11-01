@@ -16,5 +16,7 @@ forcedchunks.dat
 icon.png
 playerdata/
 stats
+/MC-RealWorldInterface-Java/out/
+/MC-RealWorldInterface-Java/.idea/
 session.lock
 

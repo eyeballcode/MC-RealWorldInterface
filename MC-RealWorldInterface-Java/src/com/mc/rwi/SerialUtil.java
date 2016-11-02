@@ -68,7 +68,7 @@ public class SerialUtil implements SerialPortEventListener {
             System.out.println("That's not a valid serial port.");
             System.exit(1);
         }
-        SerialPort port = (SerialPort) portId.open("MCRWI", TIME_OUT);
+        SerialPort port = (SerialPort) portId.open("MCRWI-Java", TIME_OUT);
         port.setSerialPortParams(DATA_RATE,
                 SerialPort.DATABITS_8,
                 SerialPort.STOPBITS_1,

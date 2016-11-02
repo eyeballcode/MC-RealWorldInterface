@@ -18,12 +18,10 @@
 
 package com.mc.rwi;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.jar.JarFile;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 
 public class LaunchWrapper {
@@ -68,7 +66,27 @@ public class LaunchWrapper {
         pb.inheritIO();
         Process p = pb.start();
         p.waitFor();
-        System.exit(p.exitValue());
+        int value = p.exitValue();
+        if (value == 134) {
+            // Cleanup JVM crash.
+            System.out.println("JVM Native Crash detected!");
+            System.out.println("Cleaning up...");
+            File myDir = myJAR.getParentFile();
+            //noinspection ConstantConditions
+            for (File file : myDir.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".log");
+                }
+            })) {
+                if (Pattern.compile("hs_err_pid\\d+\\.log").matcher(file.getName()).matches()) {
+                    //noinspection ResultOfMethodCallIgnored
+                    file.delete();
+                    System.out.println("Deleting " + file.getName());
+                }
+            }
+        }
+        System.exit(value);
     }
 
 }

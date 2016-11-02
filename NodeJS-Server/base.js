@@ -13,7 +13,7 @@ function pushEvent(computerName, message) {
 
 function waitForEvent(callback) {
 	function handle(computerName, message) {
-		callback({computerName: computerName, message: message});
+		callback({'computerName': computerName, 'message': message});
 		emitter.removeListener('event', handle);
 	}
 	emitter.on('event', handle);
@@ -39,8 +39,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/send', (req, res) => {
-	var computerName = req.body.computerName;
-	var message = req.body.message;
+	var computerName = req.body.computerName || "Unknown";
+	var message = req.body.message || "Unknown";
+  	
 	console.log("To: " + computerName + "; Message: " + message);
 	pushEvent(computerName, message);
 	res.end();

@@ -11,7 +11,7 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
  - [x] MakeBlock Controller
  - [ ] Java Client for Makeblock
  
- #To setup bare minimum:
+#To setup bare minimum:
  
  1. Run `git clone https://github.com/eyeballcode/MC-RealWorldInterface.git; cd MC-RealWorldInterface/`
  2. Run `pwd` and copy the output to the clipboard.
@@ -43,3 +43,8 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 #Makeblock setup
 - Connect the Potentiometer to Port 8
 - Connect the Joystick to Port 6
+
+
+#Notes
+- On Linux-based machines, you normally cannot read a serial port. You need root to do so.
+- Also, if you get a JVM Native crash when connecting to a serial port, please do help out by downloading RXTX-2.2pre2 and building the natives. I do not have so many machines to build the natives.

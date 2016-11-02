@@ -52,5 +52,10 @@ public class MCRWI {
 
     private static void handleButtonClick() {
         System.out.println("Potentiometer reading: " + potentioMeter);
+        try {
+            HTTPUtil.send("Potentiometer Grapher", String.valueOf(potentioMeter));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

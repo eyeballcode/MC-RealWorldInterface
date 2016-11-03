@@ -20,8 +20,8 @@ function waitForEvent(callback) {
 }
 
 app.use(function (req, res, next) {
-  delete req.headers['content-encoding']
-  next()
+  delete req.headers['content-encoding'];
+  next();
 })
 
 app.use(bodyParser.urlencoded({

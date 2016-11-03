@@ -2,6 +2,8 @@
 #include <SoftwareSerial.h>
 #include "MeOrion.h"
 
+#define ZERO_ERROR 2
+
 MePotentiometer meter(PORT_8);
 MeJoystick joystick(PORT_6);
 
@@ -11,7 +13,7 @@ void setup() {
 
 void loop() {
   print("PotentioMeter", meter.read());  
-  print("Joystick", abs(980 - joystick.readY()));
+  print("Joystick", -(joystick.readY() + ZERO_ERROR));
 }
 
 void print(const char* name, int val) {

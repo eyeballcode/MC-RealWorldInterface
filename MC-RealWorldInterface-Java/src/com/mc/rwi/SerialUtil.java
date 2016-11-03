@@ -87,6 +87,7 @@ public class SerialUtil implements SerialPortEventListener {
         if (serialPortEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
                 String data = input.readLine();
+//                System.out.println(data);
                 MCRWI.handleData(data);
             } catch (IOException e) {
             }

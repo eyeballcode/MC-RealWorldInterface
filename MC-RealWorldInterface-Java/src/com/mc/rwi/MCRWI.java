@@ -41,7 +41,7 @@ public class MCRWI {
         } else if (data.startsWith("Joystick")) {
             joystickY = Integer.parseInt(data.substring("Joystick=".length()));
         }
-        if (joystickY > 500) {
+        if (joystickY > 5) {
             if (clicking) return;
             handleButtonClick();
             clicking = true;

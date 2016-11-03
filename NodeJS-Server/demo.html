@@ -34,11 +34,8 @@
 			$('#send').click(() => {
 				send($('#computerName').val(), $('#message').val());
 			});
-			$('#openDoor').click(() => {
-				send('ServerRoomLock', 'open');
-			});
-			$('#closeDoor').click(() => {
-				send('ServerRoomLock', 'close');
+			$('#toggleDoor').click(() => {
+				send('ServerRoomLock', 'toggle');
 			});
 			$('#toggleLights').click(() => {
 				send('LightsControl', 'toggle');
@@ -54,8 +51,7 @@
 </head>
 <body>
 	<h1>Demo</h1>
-        <button id="openDoor">Open Door</button>
-	<button id="closeDoor"> Close Door</button>
+        <button id="toggleDoor">Toggle Door State</button>
 	<button id="toggleLights">Toggle Lights</button>
 	<button id="send">Click to send event</button>
 	<br><br>

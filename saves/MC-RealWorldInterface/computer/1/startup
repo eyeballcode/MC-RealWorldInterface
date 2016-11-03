@@ -3,9 +3,9 @@ rednet.open('top')
 while true do
   senderID, message = rednet.receive('MC-RealWorldInterface-ServerRoomLock')
   print(message)
-  if message == 'open' then
-    redstone.setOutput('left', true)
-  elseif message == 'close' then
-    redstone.setOutput('left', false)
+  if message == 'toggle' then
+    redstone.setOutput('back', true)
+    sleep(0.1)
+    redstone.setOutput('back', false)
   end
 end

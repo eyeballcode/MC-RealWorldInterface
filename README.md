@@ -51,7 +51,7 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 - Also, if you get a JVM Native crash when connecting to a serial port, please do help out by downloading RXTX-2.2pre2 and building the natives. I do not have so many machines to build the natives.
 
 #Potentiometer Modes
--> Each mode has a margin of 10 left and right.
+-> Each mode has a margin of 20 left and right.
 
 1. Server Room Lock toggle
 2. Lights Toggle

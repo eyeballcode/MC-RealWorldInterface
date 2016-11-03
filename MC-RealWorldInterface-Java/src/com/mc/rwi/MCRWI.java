@@ -54,10 +54,10 @@ public class MCRWI {
         System.out.println("Potentiometer reading: " + potentioMeter);
         try {
             String computerName = "Logger", message = "Potentiometer=" + potentioMeter;
-            if (potentioMeter >= 0 && potentioMeter <= 10) {
+            if (potentioMeter >= 0 && potentioMeter <= 20) {
                 computerName = "ServerRoomLock";
                 message = "toggle";
-            } else if (potentioMeter > 170 && potentioMeter < 190) {
+            } else if (potentioMeter > 160 && potentioMeter < 200) {
                 computerName = "LightsControl";
                 message = "toggle";
             }

@@ -57,7 +57,7 @@ public class MCRWI {
             if (potentioMeter >= 0 && potentioMeter <= 20) {
                 computerName = "ServerRoomLock";
                 message = "toggle";
-            } else if (potentioMeter > 160 && potentioMeter < 200) {
+            } else if (potentioMeter > 150 && potentioMeter < 210) {
                 computerName = "LightsControl";
                 message = "toggle";
             }

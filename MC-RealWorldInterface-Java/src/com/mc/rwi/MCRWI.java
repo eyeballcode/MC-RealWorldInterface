@@ -53,7 +53,15 @@ public class MCRWI {
     private static void handleButtonClick() {
         System.out.println("Potentiometer reading: " + potentioMeter);
         try {
-            HTTPUtil.send("Potentiometer Grapher", String.valueOf(potentioMeter));
+            String computerName = "Logger", message = "Potentiometer=" + potentioMeter;
+            if (potentioMeter >= 0 && potentioMeter <= 10) {
+                computerName = "ServerRoomLock";
+                message = "toggle";
+            } else if (potentioMeter > 170 && potentioMeter < 190) {
+                computerName = "LightsControl";
+                message = "toggle";
+            }
+            HTTPUtil.send(computerName, message);
         } catch (IOException e) {
             e.printStackTrace();
         }

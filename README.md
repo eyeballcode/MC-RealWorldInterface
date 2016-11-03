@@ -6,7 +6,7 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 #Working on:
 
  - [x] World -> Minecraft communication
- - [ ] Minecraft -> World communication
+ - [x] Minecraft -> World communication (Technically just post /send from Minecraft...)
  - [ ] Websockets maybe?
  - [x] MakeBlock Controller
  - [ ] Java Client for Makeblock
@@ -49,3 +49,10 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 #Notes
 - On Linux-based machines, you normally cannot read a serial port. You need root to do so.
 - Also, if you get a JVM Native crash when connecting to a serial port, please do help out by downloading RXTX-2.2pre2 and building the natives. I do not have so many machines to build the natives.
+
+#Potentiometer Modes
+-> Each mode has a margin of 10 left and right.
+
+1. Server Room Lock toggle
+2. Lights Toggle
+3. Think of something!

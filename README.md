@@ -49,6 +49,9 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 #Notes
 - On Linux-based machines, you normally cannot read a serial port. You need root to do so.
 - Also, if you get a JVM Native crash when connecting to a serial port, please do help out by downloading RXTX-2.2pre2 and building the natives. I do not have so many machines to build the natives.
+- Macs seem to be missing a `/var/lock` directory. You should create it:
+    sudo mkdir /var/lock
+    sudo chmod a=rw /var/lock
 
 #Potentiometer Modes
 -> Each mode has a margin of 30 left and right.

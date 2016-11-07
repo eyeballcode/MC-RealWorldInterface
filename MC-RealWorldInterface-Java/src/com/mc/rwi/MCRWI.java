@@ -60,6 +60,9 @@ public class MCRWI {
             } else if (potentioMeter > 150 && potentioMeter < 210) {
                 computerName = "LightsControl";
                 message = "toggle";
+            } else if (potentioMeter > 350 && potentioMeter < 410) {
+                computerName = "OutsideDoor";
+                message = "toggle";
             }
             HTTPUtil.send(computerName, message);
         } catch (IOException e) {

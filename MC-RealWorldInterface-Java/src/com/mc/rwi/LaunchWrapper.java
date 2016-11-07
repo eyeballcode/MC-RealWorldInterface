@@ -35,7 +35,7 @@ public class LaunchWrapper {
 
         File myJAR = new File(LaunchWrapper.class.getProtectionDomain().getCodeSource().getLocation().getPath());
         String path = "natives" + File.separator + OSUtil.getOS().name().toLowerCase() + File.separator + arch;
-        String fullPath = null;
+        String fullPath;
         if (myJAR.isFile()) {
             JarFile jar = new JarFile(myJAR);
 

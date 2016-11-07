@@ -1,0 +1,10 @@
+rednet.open('left')
+
+while true do
+  sender, message = rednet.receive('MC-RealWorldInterface-OutsideDoor')
+  if message == 'toggle' then
+    redstone.setOutput('front', true)
+    sleep(.1)
+    redstone.setOutput('front', false)
+  end
+end

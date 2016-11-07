@@ -1,57 +1,10 @@
-os.loadAPI("data")
-os.loadAPI('json')
-
-rednet.open('right')
-
-function get(path)
-  local handle = http.get(data.server_url .. path)
-  print('GET ' .. path)
-  if handle == nil then
-    return nil
-  end
-  local data = handle.readAll()
-  handle.close()
-  return {
-    data = data,
-    code = handle.getResponseCode()
-  }
-end
-
-function post(path)
-  local handle = http.post(data.server_url .. path)
-  print('POST ' .. path)
-  if handle == nil then
-    return nil
-  end
-  local data = handle.readAll()
-  handle.close()
-  return {
-    data = data,
-    code = handle.getResponseCode()
-  }
-end
-
-print("MC-RealWorldInterface v1.0 started")
-print("Attempting to connect to server...")
-print("Server address: " .. data.server_url)
-test = get('/test')
-if test == nil then
-  print('Could not connect to server!')
-  do return end
-end
-print('Connected to server!')
-print('Starting long polling...')
+rednet.open('top')
 
 while true do
-  local res = post('/poll')
-  local payload = res.data
-  local jsonPayload = json.decode(payload)
-  local target = jsonPayload.computerName
-  local message = jsonPayload.message
-  print('Message for ' .. target)
-  rednet.broadcast(message, 'MC-RealWorldInterface-' .. target)
-  sleep(0.1)
+  sender, message = rednet.receive('MC-RealWorldInterface-ServerRoomLock')
+  if message == 'toggle' then
+    redstone.setOutput('left', true)
+    sleep(.1)
+    redstone.setOutput('left', false)
+  end
 end
-
-
-

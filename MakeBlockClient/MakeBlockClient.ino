@@ -15,9 +15,21 @@ void setup() {
 }
 
 void loop() {
-  print("PotentioMeter", meter.read());  
+  int potentiometer = meter.read();
+  Serial.println(potentiometer);
+  int mode = 0;
+  if (potentiometer >= 0 && potentiometer <= 100) {
+    print("Mode", 0);
+    mode = 0;
+  } else if (potentiometer > 100 && potentiometer <= 250) {
+    print("Mode", 1);
+    mode = 1;
+  } else if (potentiometer > 250 && potentiometer <= 400) {
+    print("Mode", 2);
+    mode = 2;
+  } else mode = 99;
   print("Joystick", -(joystick.readY() + ZERO_ERROR));
-  disp.display(meter.read());
+  disp.display(mode);
 }
 
 void print(const char* name, int val) {

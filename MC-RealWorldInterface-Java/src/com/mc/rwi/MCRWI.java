@@ -27,17 +27,23 @@ import java.util.TooManyListenersException;
 
 public class MCRWI {
 
+    static String[][] data = {
+            {"ServerRoomLock", "toggle"},
+            {"LightsControl", "toggle"},
+            {"OutsideDoor", "toggle"}
+    };
+
     public static void main(String[] args) throws IOException, TooManyListenersException, PortInUseException, UnsupportedCommOperationException {
         SerialPort port = SerialUtil.lookupSerialPort();
     }
 
-    private static int potentioMeter = 0;
+    private static int mode = 0;
     private static int joystickY = 0;
     private static boolean clicking = false;
 
     static void handleData(String data) {
-        if (data.startsWith("PotentioMeter")) {
-            potentioMeter = Integer.parseInt(data.substring("PotentioMeter=".length()));
+        if (data.startsWith("Mode")) {
+            mode = Integer.parseInt(data.substring("Mode=".length()));
         } else if (data.startsWith("Joystick")) {
             joystickY = Integer.parseInt(data.substring("Joystick=".length()));
         }
@@ -51,19 +57,11 @@ public class MCRWI {
     }
 
     private static void handleButtonClick() {
-        System.out.println("Potentiometer reading: " + potentioMeter);
+        System.out.println("Mode: " + mode);
         try {
-            String computerName = "Logger", message = "Potentiometer=" + potentioMeter;
-            if (potentioMeter >= 0 && potentioMeter <= 20) {
-                computerName = "ServerRoomLock";
-                message = "toggle";
-            } else if (potentioMeter > 150 && potentioMeter < 210) {
-                computerName = "LightsControl";
-                message = "toggle";
-            } else if (potentioMeter > 350 && potentioMeter < 410) {
-                computerName = "OutsideDoor";
-                message = "toggle";
-            }
+            if (mode == 99) return;
+            String computerName = data[mode][0];
+            String message = data[mode][1];
             HTTPUtil.send(computerName, message);
         } catch (IOException e) {
             e.printStackTrace();

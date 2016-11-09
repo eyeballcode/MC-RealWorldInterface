@@ -2,7 +2,6 @@ rednet.open('right')
 
 while true do
   sender, message = rednet.receive('MC-RealWorldInterface-TempRoomDoor')
-  print(message)
   if message == 'toggle' then
     redstone.setOutput('top', true)
     sleep(.1)

@@ -31,6 +31,7 @@ public class MCRWI {
             {"ServerRoomLock", "toggle"},
             {"LightsControl", "toggle"},
             {"OutsideDoor", "toggle"},
+            {"TempRoomDoor", "toggle"}
     };
 
     public static void main(String[] args) throws IOException, TooManyListenersException, PortInUseException, UnsupportedCommOperationException {
@@ -41,6 +42,7 @@ public class MCRWI {
     private static int joystickY = 0;
     private static boolean clicking = false;
     private static int temperature = 0;
+    private static int tempCount = 0;
 
     static void handleData(String data) {
         if (data.startsWith("Mode")) {
@@ -48,10 +50,14 @@ public class MCRWI {
         } else if (data.startsWith("Joystick")) {
             joystickY = Integer.parseInt(data.substring("Joystick=".length()));
         } else if (data.startsWith("TempLogger")) {
-            temperature = Integer.parseInt(data.substring("TempLogger=".length()));
-            try {
-                HTTPUtil.send("TempLogger", data);
-            } catch (IOException e) {
+            tempCount++;
+            if (tempCount == 10) {
+                temperature = Integer.parseInt(data.substring("TempLogger=".length()));
+                try {
+                    HTTPUtil.send("TempLogger", data);
+                } catch (IOException e) {
+                }
+                tempCount = 0;
             }
         }
         if (joystickY > 5) {
@@ -70,7 +76,7 @@ public class MCRWI {
             String computerName = data[mode][0];
             String message = data[mode][1];
             HTTPUtil.send(computerName, message);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

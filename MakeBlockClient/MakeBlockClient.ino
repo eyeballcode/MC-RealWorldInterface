@@ -7,6 +7,7 @@
 MePotentiometer meter(PORT_8);
 MeJoystick joystick(PORT_7);
 Me7SegmentDisplay disp(PORT_6);
+MeTemperature thermometer(PORT_3, SLOT1);
 
 void setup() {
   Serial.begin(2400);
@@ -16,6 +17,7 @@ void setup() {
 
 void loop() {
   int potentiometer = meter.read();
+  int temperature = thermometer.temperature();
   int mode = 0;
   if (potentiometer >= 0 && potentiometer <= 100) {
     mode = 0;
@@ -23,8 +25,11 @@ void loop() {
     mode = 1;
   } else if (potentiometer > 250 && potentiometer <= 400) {
     mode = 2;
+  } else if (potentiometer > 400 && potentiometer <= 550) {
+    mode = 3;
   } else mode = 99;
   print("Mode", mode);
+  print("TempLogger", temperature);
   print("Joystick", -(joystick.readY() + ZERO_ERROR));
   disp.display(mode);
 }

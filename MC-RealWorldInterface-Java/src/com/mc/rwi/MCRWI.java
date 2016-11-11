@@ -41,7 +41,6 @@ public class MCRWI {
     private static int mode = 0;
     private static int joystickY = 0;
     private static boolean clicking = false;
-    private static int temperature = 0;
     private static int tempCount = 0;
 
     static void handleData(String data) {
@@ -52,7 +51,6 @@ public class MCRWI {
         } else if (data.startsWith("TempLogger")) {
             tempCount++;
             if (tempCount == 10) {
-                temperature = Integer.parseInt(data.substring("TempLogger=".length()));
                 try {
                     HTTPUtil.send("TempLogger", data);
                 } catch (IOException e) {

@@ -1,10 +1,6 @@
-rednet.open('top')
-
 while true do
-  sender, message = rednet.receive('MC-RealWorldInterface-LightsControl')
-  if message == 'toggle' then
-    redstone.setOutput('front', true)
-    sleep(.5)
-    redstone.setOutput('front', false)
-  end
+  redstone.setOutput('top', true)
+  sleep(.5)
+  redstone.setOutput('top', false)
+  sleep(.5)
 end

@@ -18,6 +18,8 @@
 
 package com.mc.rwi;
 
+import old_com.mc.rwi.OS;
+
 public class OSUtil {
 
     public static OS getOS() {

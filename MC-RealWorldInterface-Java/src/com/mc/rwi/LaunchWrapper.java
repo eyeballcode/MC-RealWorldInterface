@@ -60,7 +60,7 @@ public class LaunchWrapper {
         arg.add("-Djava.library.path=" + fullPath);
         arg.add("-cp");
         arg.add(myJAR.getAbsolutePath() + File.pathSeparator + System.getProperty("java.class.path"));
-        arg.add("com.mc.rwi.MCRWI");
+        arg.add("online.eyeball.minecraft.Main");
 
         ProcessBuilder pb = new ProcessBuilder(arg);
         pb.inheritIO();

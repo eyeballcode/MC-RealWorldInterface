@@ -1,10 +1,85 @@
+moves = {
+    function()
+        turtle.up()
+        turtle.down()
+    end,
+    function()
+        turtle.up()
+        for i = 1, 4 do turtle.turnLeft() end
+        turtle.down()
+    end,
+    function()
+        turtle.up()
+        for i = 1, 4 do turtle.turnRight() end
+        turtle.down()
+    end,
+    function()
+        for i = 1, 4 do turtle.turnLeft() end
+    end,
+    function()
+        for i = 1, 4 do turtle.turnRight() end
+    end,
+    function()
+        turtle.turnLeft()
+        turtle.back()
+        turtle.back()
+        turtle.turnRight()
+        turtle.turnRight()
+        turtle.back()
+        turtle.back()
+        turtle.turnLeft()
+    end,
+    function()
+        turtle.turnRight()
+        turtle.back()
+        turtle.back()
+        turtle.turnLeft()
+        turtle.turnLeft()
+        turtle.back()
+        turtle.back()
+        turtle.turnRight()
+    end,
+    function()
+        for i = 1, 4 do
+            turtle.back()
+            turtle.turnLeft()
+        end
+    end,
+    function()
+        for i = 1, 4 do
+            turtle.back()
+            turtle.turnRight()
+        end
+    end
+}
+
 rednet.open('left')
 
-while true do
-  sender, message = rednet.receive('MC-RealWorldInterface-OutsideDoor')
-  if message == 'toggle' then
-    redstone.setOutput('front', true)
-    sleep(.1)
-    redstone.setOutput('front', false)
-  end
+local running = false
+
+function recieve()
+    while true do
+      senderID, message = rednet.receive('MC-RealWorldInterface-TurtleAnimator')
+      if message == 'TurnOn' then
+        running = true
+      elseif message == 'TurnOff' then
+        running = false
+      end
+    end
 end
+
+function dance()
+    while true do
+        if not running then
+            sleep(1)
+        else
+            redstone.setOutput('bottom', true)
+            while running do
+                moves[math.random(1, #moves)]()
+            end
+            redstone.setOutput('bottom', false)
+        end
+    end
+end
+
+parallel.waitForAll(recieve, dance)

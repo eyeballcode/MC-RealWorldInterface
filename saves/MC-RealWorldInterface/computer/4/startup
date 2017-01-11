@@ -1,10 +1,42 @@
-rednet.open('right')
+rednet.open('top')
 
-while true do
-  sender, message = rednet.receive('MC-RealWorldInterface-TempRoomDoor')
-  if message == 'toggle' then
-    redstone.setOutput('top', true)
-    sleep(.1)
-    redstone.setOutput('top', false)
-  end
+local running = false
+monitor = peripheral.find('monitor')
+
+local colourList = {
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'blue',
+    'purple'
+}
+
+function recieve()
+    while true do
+      senderID, message = rednet.receive('MC-RealWorldInterface-RainbowScreen')
+      if message == 'Start' then
+        running = true
+      elseif message == 'Stop' then
+        running = false
+      end
+    end
 end
+
+function draw()
+    while true do
+        if not running then
+            sleep(1)
+        else
+            while running do
+                for i = 1, #colourList do
+                    monitor.setBackgroundColor(colours[colourList[i]])
+                    monitor.clear()
+                    sleep(.5)
+                end
+            end
+        end
+    end
+end
+
+parallel.waitForAll(recieve, draw)

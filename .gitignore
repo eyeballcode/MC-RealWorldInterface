@@ -9,9 +9,9 @@
 /config/forgeChunkLoading.cfg
 /config/splash.properties
 /NodeJS-Server/node_modules/
-/saves/MC-RealWorldInterface/DIM-1
-/saves/MC-RealWorldInterface/DIM1
-/saves/MC-RealWorldInterface/data/
+/saves/*/DIM-1
+/saves/*/DIM*
+/saves/*/data/
 forcedchunks.dat
 icon.png
 playerdata/

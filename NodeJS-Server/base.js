@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/send', (req, res) => {
+	console.log(req.body)
 	var computerName = req.body.computerName || "Unknown";
 	var message = req.body.message || "Unknown";
   	

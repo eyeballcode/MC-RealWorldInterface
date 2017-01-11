@@ -1,0 +1,34 @@
+rednet.open('front')
+
+colourData = {
+    green = {
+        dest = 'ColouredLampFlasher',
+        on = 'TurnOn',
+        off = 'TurnOff'
+    }, red = {
+        dest = 'TurtleAnimator',
+        on = 'TurnOn',
+        off = 'TurnOff'
+    }, yellow = {
+        dest = 'RainbowScreen',
+        on = 'Start',
+        off = 'Stop'
+    }
+}
+
+lastColourData = {
+    green='',red='',yellow=''
+}
+
+while true do
+    for colourName, data in pairs(colourData) do
+        local state = redstone.testBundledInput('top', colors[colourName])
+        if not state == lastColourData[colourName] then
+            message = data[state and 'on' or 'off']
+                print('Sending ' .. colourName .. ' ' .. message)
+            rednet.broadcast(data.dest .. ':' .. message, 'MC-RealWorldInterface-Outbound')
+        end
+        lastColourData[colourName] = state
+    end
+    sleep(.1)
+end

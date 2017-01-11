@@ -60,3 +60,10 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 1. Server Room Lock toggle
 2. Lights Toggle
 3. Think of something!
+
+#Minecraft Mod Credits:
+Without these mods:
+- ComputerCraft by Dan200
+- EnderIO by tterrag and CrazyPants
+
+

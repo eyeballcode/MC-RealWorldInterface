@@ -12,6 +12,7 @@
 /saves/*/DIM-1
 /saves/*/DIM*
 /saves/*/data/
+/saves/*/enderio
 forcedchunks.dat
 icon.png
 playerdata/
@@ -19,4 +20,5 @@ stats
 /MC-RealWorldInterface-Java/out/
 /MC-RealWorldInterface-Java/.idea/
 session.lock
-
+/config/enderio
+/config/endercore

@@ -10,9 +10,9 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
  - [ ] Websockets maybe?
  - [x] MakeBlock Controller
  - [ ] Java Client for Makeblock
- 
+
 #To setup bare minimum:
- 
+
  1. Run `git clone https://github.com/eyeballcode/MC-RealWorldInterface.git; cd MC-RealWorldInterface/`
  2. Run `pwd` and copy the output to the clipboard.
  3. Create a Minecraft launcher profile looking like this: ![](http://i.imgur.com/2KevrJg.png)
@@ -62,8 +62,12 @@ Using this, you can hook up any device to control Minecraft. (Even a toaster if 
 3. Think of something!
 
 #Minecraft Mod Credits:
-Without these mods:
+Without these few things:
+
 - ComputerCraft by Dan200
 - EnderIO by tterrag and CrazyPants
+- Minecraft Forge by the forge team
+- Minecraft by Mojang ;)
 
-
+this project would not have been possible!
+(Note that I did not modify the JARs in any way. Feel free to md5sum them)

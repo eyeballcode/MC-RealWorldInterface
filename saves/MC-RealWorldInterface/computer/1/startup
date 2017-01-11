@@ -1,12 +1,42 @@
 rednet.open('top')
 
-computer = peripheral.find('computer')
+local running = false
 
-while true do
-  senderID, message = rednet.receive('MC-RealWorldInterface-ColouredLampFlasher')
-  if message == 'TurnOn' then
-    computer.turnOn()
-  elseif message == 'TurnOff' then
-    computer.shutdown()
-  end
+local colourList = {
+  'red',
+  'green',
+  'brown',
+  'blue',
+  'purple',
+  'cyan',
+  'lightGray'
+}
+
+function recieve()
+    while true do
+      senderID, message = rednet.receive('MC-RealWorldInterface-ColouredLampFlasher')
+      if message == 'TurnOn' then
+        running = true
+      elseif message == 'TurnOff' then
+        running = false
+      end
+    end
 end
+
+function loop()
+    while true do
+        if not running then
+            sleep(1)
+        else
+            while running do
+                for i = 1, #colourList do
+                    redstone.setBundledOutput('back', colors[colourList[i]])
+                    sleep(.5)
+                end
+            end
+            redstone.setBundledOutput('back', 0)
+        end
+    end
+end
+
+parallel.waitForAll(recieve, loop)

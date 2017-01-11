@@ -1,6 +1,0 @@
-while true do
-  redstone.setOutput('top', true)
-  sleep(.5)
-  redstone.setOutput('top', false)
-  sleep(.5)
-end
